@@ -72,8 +72,30 @@ function App() {
 
   return (
     <>
-      <div style={styles.navbar}>
-        <div style={styles.navTitle}>CV Creator</div>
+      <div style={{
+        position: "sticky",
+        top: 0,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "12px 24px",
+        backgroundColor: "#f7f7f7",
+        borderBottom: "1px solid #ccc",
+        fontFamily: "sans-serif",
+        zIndex: 10,
+        opacity: 1,
+        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)"
+      }}
+      >
+        <div style={{
+          fontWeight: "bold",
+          fontSize: "22px",
+          color: "#333",
+          textTransform: "uppercase"
+        }}
+        >CV Creator</div>
         <button onClick={handleDownloadPDF} style={styles.navButton}>
           📄 Download PDF
         </button>
