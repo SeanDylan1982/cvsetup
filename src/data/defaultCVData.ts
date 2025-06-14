@@ -2,7 +2,7 @@
 import type { CVData } from '../types/CVData';
 
 const defaultCVData: CVData = {
-  photo: '',
+  photo: '../src/assets/placeholder.png',
   name: 'John Doe',
   email: 'john@example.com',
   phone: '123-456-7890',
@@ -50,13 +50,25 @@ const defaultCVData: CVData = {
       contact: '123-456-7890',
     },
   ],
-  languages: [],
-  software: [],
-  address: '',
-  headline: '',
-  salaryExpectation: '',
-  transportation: '',
-  healthStatus: ''
+  languages: [
+    {
+      language: 'English',
+      written: 'Fluent',
+      verbal: 'Fluent',
+    },
+  ],
+  software: [
+    {
+      software: 'Visual Studio Code',
+      years: '5',
+      ability: 'Development',
+    },
+  ],
+  address: 'South Africa',
+  headline: 'Web Developer',
+  salaryExpectation: 'R10000',
+  transportation: 'Own Vehicle',
+  healthStatus: 'Good'
 };
   
 export default defaultCVData;
