@@ -35,7 +35,7 @@ function App() {
         scrollY: 0
       },
       // optional: prevent scroll offset issues
-      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
     };
 
     html2pdf().set(options).from(resumeRef.current).save();

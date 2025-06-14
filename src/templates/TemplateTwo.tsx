@@ -29,8 +29,8 @@ const TemplateTwo: React.FC<{ data: CVData }> = ({ data }) => {
             src={data.photo}
             alt="User"
             style={{
-              width: "100px",
-              height: "100px",
+              width: "150px",
+              height: "200px",
               borderRadius: "50%",
               objectFit: "cover",
               marginTop: "16px",
@@ -57,7 +57,7 @@ const TemplateTwo: React.FC<{ data: CVData }> = ({ data }) => {
             {edu.degree} — {edu.school}
           </h3>
           <p style={{ fontStyle: "italic" }}>{edu.dates}</p>
-          <p>{edu.description}</p>
+          <p>{edu.degree}</p>
         </div>
       ))}
 
@@ -95,8 +95,9 @@ const TemplateTwo: React.FC<{ data: CVData }> = ({ data }) => {
           <h2>Languages</h2>
           {data.languages.map((lang, i) => (
             <p key={i}>
-              <strong>{lang.language}</strong> — Written: {lang.written},
-              Verbal: {lang.verbal}
+              <strong>{lang.language}</strong>
+              <p>Written: {lang.written}</p>
+              <p>Verbal: {lang.verbal}</p>
             </p>
           ))}
         </>
@@ -107,7 +108,9 @@ const TemplateTwo: React.FC<{ data: CVData }> = ({ data }) => {
           <h2>Software</h2>
           {data.software.map((sw, i) => (
             <p key={i}>
-              <strong>{sw.software}</strong> — {sw.years} years, {sw.ability}
+              <strong>{sw.software}</strong>
+              <p>{sw.years} years</p>
+              <p>{sw.ability}</p>
             </p>
           ))}
         </>

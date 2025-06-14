@@ -1,5 +1,5 @@
 import React from "react";
-import { CVData } from "../../types/CVData";
+import type { CVData } from "../types/CVData";
 
 const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
   return (
@@ -18,11 +18,10 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
           display: "flex",
           flexDirection: "row",
           width: "100%",
-          maxWidth: "1000px",
+          maxWidth: "100%",
           margin: "0 auto",
         }}
       >
-        {/* Left and Right columns go here */}
         {/* LEFT COLUMN */}
         <div
           style={{
@@ -31,28 +30,21 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
             padding: "24px",
             boxSizing: "border-box",
             overflowY: "auto",
-            height: "100vh",
+            height: "100%",
           }}
         >
-          {/* Profile */}
-          {data.summary && (
-            <>
-              <h2 style={styles.leftHeading}>PROFILE</h2>
-              <p style={styles.paragraph}>{data.summary}</p>
-            </>
-          )}
-
-          {/* Skills */}
-          {data.skills.length > 0 && (
-            <>
-              <h2 style={styles.leftHeading}>SKILLS</h2>
-              <ul style={styles.bulletList}>
-                {data.skills.map((skill, i) => (
-                  <li key={i}>{skill}</li>
-                ))}
-              </ul>
-            </>
-          )}
+          <div
+            style={{
+              fontSize: "14px",
+              lineHeight: "1.5",
+              marginBottom: "24px",
+            }}
+          >
+            {data.phone && <p>📞 {data.phone}</p>}
+            {data.email && <p>✉️ {data.email}</p>}
+            {data.address && <p>📍 {data.address}</p>}
+            {data.website && <p>🔗 {data.website}</p>}
+          </div>
 
           {/* Languages */}
           {data.languages?.length > 0 && (
@@ -67,6 +59,18 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
                   <span>Verbal: {lang.verbal}</span>
                 </div>
               ))}
+            </>
+          )}
+
+          {/* Skills */}
+          {data.skills.length > 0 && (
+            <>
+              <h2 style={styles.leftHeading}>SKILLS</h2>
+              <ul style={styles.bulletList}>
+                {data.skills.map((skill, i) => (
+                  <li key={i}>{skill}</li>
+                ))}
+              </ul>
             </>
           )}
 
@@ -134,7 +138,7 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
             padding: "32px",
             boxSizing: "border-box",
             overflowY: "auto",
-            height: "100vh",
+            height: "100%",
           }}
         >
           {/* Top row: name + image */}
@@ -160,26 +164,14 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
                   {data.headline}
                 </p>
               )}
-              <div
-                style={{
-                  fontSize: "14px",
-                  lineHeight: "1.5",
-                  marginBottom: "24px",
-                }}
-              >
-                {data.phone && <p>📞 {data.phone}</p>}
-                {data.email && <p>✉️ {data.email}</p>}
-                {data.address && <p>📍 {data.address}</p>}
-                {data.website && <p>🔗 {data.website}</p>}
-              </div>
             </div>
             {data.photo && (
               <img
                 src={data.photo}
                 alt="User"
                 style={{
-                  width: "100px",
-                  height: "100px",
+                  width: "150px",
+                  height: "200px",
                   objectFit: "cover",
                   borderRadius: "8px",
                   border: "1px solid #ccc",
@@ -188,6 +180,14 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
               />
             )}
           </div>
+
+          {/* Profile */}
+          {data.summary && (
+            <>
+              <h2 style={styles.leftHeading}>PROFILE</h2>
+              <p style={styles.paragraph}>{data.summary}</p>
+            </>
+          )}
 
           {/* Experience */}
           <h2 style={styles.rightHeading}>WORK EXPERIENCE</h2>
@@ -250,7 +250,6 @@ const TemplateThree: React.FC<{ data: CVData }> = ({ data }) => {
           )}
         </div>
       </div>
-
     </div>
   );
 };

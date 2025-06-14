@@ -52,8 +52,8 @@ const TemplateOne: React.FC<{ data: CVData }> = ({ data }) => {
             src={data.photo}
             alt="User"
             style={{
-              width: "100px",
-              height: "100px",
+              width: "150px",
+              height: "200px",
               objectFit: "cover",
               borderRadius: "8px",
               border: "1px solid #ccc",
@@ -67,7 +67,7 @@ const TemplateOne: React.FC<{ data: CVData }> = ({ data }) => {
       {data.experience.map((exp, i) => (
         <div key={i} style={{ marginBottom: "16px" }}>
           <strong>
-            {exp.company}, {exp.location} — {exp.title}
+            {exp.company} — {exp.title}
           </strong>
           <p style={{ fontStyle: "italic", fontSize: "13px" }}>{exp.dates}</p>
           <p>{exp.description}</p>
@@ -78,10 +78,10 @@ const TemplateOne: React.FC<{ data: CVData }> = ({ data }) => {
       {data.education.map((edu, i) => (
         <div key={i} style={{ marginBottom: "16px" }}>
           <strong>
-            {edu.school}, {edu.location} — {edu.degree}
+            {edu.school} — {edu.degree}
           </strong>
           <p style={{ fontStyle: "italic", fontSize: "13px" }}>{edu.dates}</p>
-          <p>{edu.description}</p>
+          <p>{edu.degree}</p>
         </div>
       ))}
 
@@ -119,8 +119,9 @@ const TemplateOne: React.FC<{ data: CVData }> = ({ data }) => {
           <h2>Languages</h2>
           {data.languages.map((lang, i) => (
             <p key={i}>
-              <strong>{lang.language}</strong> — Written: {lang.written},
-              Verbal: {lang.verbal}
+              <strong>{lang.language}</strong>
+              <p>Written: {lang.written}</p>
+              <p>Verbal: {lang.verbal}</p>
             </p>
           ))}
         </>
@@ -131,7 +132,9 @@ const TemplateOne: React.FC<{ data: CVData }> = ({ data }) => {
           <h2>Software</h2>
           {data.software.map((sw, i) => (
             <p key={i}>
-              <strong>{sw.software}</strong> — {sw.years} years, {sw.ability}
+              <strong>{sw.software}</strong>
+              <p>{sw.years} years</p>
+              <p>{sw.ability}</p>
             </p>
           ))}
         </>
