@@ -1,0 +1,99 @@
+.app
+{
+  display: flex;
+  height: 90vh;
+  width: 100vw;
+  font-family: sans-serif;
+}
+
+.left-panel,
+.right-panel
+{
+  width: 50%;
+  padding: 24px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.left-panel
+{
+  background-color: #f0f0f0;
+}
+
+.right-panel
+{
+  background-color: #ffffff;
+  border-left: 1px solid #ccc;
+}
+
+body
+{
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+}
+
+input,
+textarea,
+select
+{
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  color: #333;
+  background-color: #eee;
+}
+
+h2
+{
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+label
+{
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #444;
+}
+
+@media print
+{
+  body
+  {
+    background: white;
+    margin: 0;
+  }
+
+  .left-panel
+  {
+    display: none;
+  }
+
+  .right-panel
+  {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Hide scrollbars globally */
+*
+{
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar
+{
+  display: none;
+  /* Chrome, Safari, Opera */
+}
