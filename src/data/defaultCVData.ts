@@ -49,7 +49,14 @@ const defaultCVData: CVData = {
       relationship: 'Former Manager',
       contact: '123-456-7890',
     },
-  ]
+  ],
+  languages: [],
+  software: [],
+  address: '',
+  headline: '',
+  salaryExpectation: '',
+  transportation: '',
+  healthStatus: ''
 };
   
 export default defaultCVData;

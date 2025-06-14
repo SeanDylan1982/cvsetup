@@ -62,3 +62,32 @@ export interface ReferenceEntry {
 export interface CVData {
   references: ReferenceEntry[];
 }
+
+export interface CVData {
+  title?: string;        // e.g., "Marketing Manager"
+  address: string;
+  website?: string;
+  languages: string[];
+}
+
+export interface LanguageEntry {
+  language: string;
+  written: string;
+  verbal: string;
+}
+
+export interface SoftwareEntry {
+  software: string;
+  years: string;
+  ability: string;
+}
+
+export interface CVData {
+  languages: LanguageEntry[];
+  software: SoftwareEntry[];
+  address: string;
+  headline: string;
+  salaryExpectation: string;
+  transportation: string;
+  healthStatus: string;
+}

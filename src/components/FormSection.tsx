@@ -118,11 +118,170 @@ const FormSection: React.FC<Props> = ({ data, onChange }) => {
         value={data.phone}
         onChange={(e) => handleChange("phone", e.target.value)}
       />
+      <h2>Additional Details</h2>
+      <label>Headline (position sought)</label>
+      <input
+        type="text"
+        value={data.headline}
+        onChange={(e) => handleChange("headline", e.target.value)}
+      />
+
+      <label>Address</label>
+      <input
+        type="text"
+        value={data.address}
+        onChange={(e) => handleChange("address", e.target.value)}
+      />
+
+      <label>Salary Expectation</label>
+      <input
+        type="text"
+        value={data.salaryExpectation}
+        onChange={(e) => handleChange("salaryExpectation", e.target.value)}
+      />
+
+      <label>Transportation</label>
+      <input
+        type="text"
+        value={data.transportation}
+        onChange={(e) => handleChange("transportation", e.target.value)}
+      />
+
+      <label>Health Status</label>
+      <textarea
+        value={data.healthStatus}
+        onChange={(e) => handleChange("healthStatus", e.target.value)}
+      />
+
+      <h2>Languages</h2>
+      {data.languages.map((lang, index) => (
+        <div
+          key={index}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "6px",
+          }}
+        >
+          <label>Language</label>
+          <input
+            type="text"
+            value={lang.language}
+            onChange={(e) => {
+              const updated = [...data.languages];
+              updated[index].language = e.target.value;
+              onChange({ ...data, languages: updated });
+            }}
+          />
+          <label>Written Proficiency</label>
+          <input
+            type="text"
+            value={lang.written}
+            onChange={(e) => {
+              const updated = [...data.languages];
+              updated[index].written = e.target.value;
+              onChange({ ...data, languages: updated });
+            }}
+          />
+          <label>Verbal Proficiency</label>
+          <input
+            type="text"
+            value={lang.verbal}
+            onChange={(e) => {
+              const updated = [...data.languages];
+              updated[index].verbal = e.target.value;
+              onChange({ ...data, languages: updated });
+            }}
+          />
+          <button
+            onClick={() => {
+              const updated = data.languages.filter((_, i) => i !== index);
+              onChange({ ...data, languages: updated });
+            }}
+            style={styles.addButton}
+          >
+            ➖ Remove Language
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() => {
+          const newLang = { language: "", written: "", verbal: "" };
+          onChange({ ...data, languages: [...data.languages, newLang] });
+        }}
+        style={styles.addButton}
+      >
+        ➕ Add Language
+      </button>
+
       <label>Summary</label>
       <textarea
         value={data.summary}
         onChange={(e) => handleChange("summary", e.target.value)}
       />
+
+      <h2>Software Skills</h2>
+      {data.software.map((sw, index) => (
+        <div
+          key={index}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            borderRadius: "6px",
+          }}
+        >
+          <label>Software</label>
+          <input
+            type="text"
+            value={sw.software}
+            onChange={(e) => {
+              const updated = [...data.software];
+              updated[index].software = e.target.value;
+              onChange({ ...data, software: updated });
+            }}
+          />
+          <label>Years Experience</label>
+          <input
+            type="text"
+            value={sw.years}
+            onChange={(e) => {
+              const updated = [...data.software];
+              updated[index].years = e.target.value;
+              onChange({ ...data, software: updated });
+            }}
+          />
+          <label>Professional Ability</label>
+          <input
+            type="text"
+            value={sw.ability}
+            onChange={(e) => {
+              const updated = [...data.software];
+              updated[index].ability = e.target.value;
+              onChange({ ...data, software: updated });
+            }}
+          />
+          <button
+            onClick={() => {
+              const updated = data.software.filter((_, i) => i !== index);
+              onChange({ ...data, software: updated });
+            }}
+            style={styles.addButton}
+          >
+            ➖ Remove Software
+          </button>
+        </div>
+      ))}
+      <button
+        onClick={() => {
+          const newSW = { software: "", years: "", ability: "" };
+          onChange({ ...data, software: [...data.software, newSW] });
+        }}
+        style={styles.addButton}
+      >
+        ➕ Add Software
+      </button>
 
       <h2>Experience</h2>
       {data.experience.map((exp, index) => (

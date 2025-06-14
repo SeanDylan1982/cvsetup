@@ -29,11 +29,17 @@ function App() {
       margin: 0.5,
       filename: fileName,
       image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        scrollY: 0
+      },
+      // optional: prevent scroll offset issues
       jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
     };
 
     html2pdf().set(options).from(resumeRef.current).save();
+
   };
 
   const styles = {
@@ -72,34 +78,37 @@ function App() {
 
   return (
     <>
-      <div style={{
-        position: "sticky",
-        top: 0,
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "12px 24px",
-        backgroundColor: "#f7f7f7",
-        borderBottom: "1px solid #ccc",
-        fontFamily: "sans-serif",
-        zIndex: 10,
-        opacity: 1,
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        backdropFilter: "blur(10px)",
-        WebkitBackdropFilter: "blur(10px)"
-      }}
-      >
-        <div style={{
-          fontWeight: "bold",
-          fontSize: "22px",
-          color: "#333",
-          textTransform: "uppercase"
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "12px 24px",
+          backgroundColor: "#f7f7f7",
+          borderBottom: "1px solid #ccc",
+          fontFamily: "sans-serif",
+          zIndex: 10,
+          opacity: 1,
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
         }}
-        >CV Creator</div>
+      >
+        <div
+          style={{
+            fontWeight: "bold",
+            fontSize: "22px",
+            color: "#333",
+            textTransform: "uppercase",
+          }}
+        >
+          CV Setup
+        </div>
         <button onClick={handleDownloadPDF} style={styles.navButton}>
           📄 Download PDF
         </button>
-        
       </div>
 
       <div className="app">
@@ -112,7 +121,7 @@ function App() {
         </div>
 
         <div className="right-panel">
-          <div ref={resumeRef}>
+          <div ref={resumeRef} style={{ background: "#fff", padding: "24px" }}>
             <TemplateViewer data={cvData} template={selectedTemplate} />
           </div>
         </div>

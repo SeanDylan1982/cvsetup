@@ -6,40 +6,24 @@ const TemplateTwo: React.FC<{ data: CVData }> = ({ data }) => {
     <div
       style={{
         padding: "40px",
-        fontFamily: "Arial, sans-serif",
-        color: "#111",
-        lineHeight: "1.6",
+        fontFamily: "Georgia, serif",
+        color: "#333",
+        maxWidth: "800px",
+        margin: "auto",
       }}
     >
-      {/* Header with Photo */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          marginBottom: "24px",
-        }}
-      >
-        <div>
-          <h1
-            style={{
-              fontSize: "28px",
-              fontWeight: "bold",
-              marginBottom: "4px",
-            }}
-          >
-            {data.name}
-          </h1>
-          <div style={{ fontSize: "14px" }}>
-            {/* {data.address && <p>{data.address}</p>} */}
-            <p>
-              {data.phone} | {data.email}
-            </p>
-            <p>
-              {data.summary}
-            </p>
-          </div>
-        </div>
+      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <h1 style={{ fontSize: "32px" }}>{data.name}</h1>
+        {data.headline && (
+          <p style={{ fontSize: "18px", fontStyle: "italic" }}>
+            {data.headline}
+          </p>
+        )}
+        {data.address && <p>{data.address}</p>}
+        <p>
+          {data.phone} | {data.email}
+        </p>
+        {data.website && <p>{data.website}</p>}
         {data.photo && (
           <img
             src={data.photo}
@@ -47,106 +31,121 @@ const TemplateTwo: React.FC<{ data: CVData }> = ({ data }) => {
             style={{
               width: "100px",
               height: "100px",
+              borderRadius: "50%",
               objectFit: "cover",
-              borderRadius: "8px",
-              border: "1px solid #ccc",
-              marginLeft: "20px",
+              marginTop: "16px",
             }}
           />
         )}
       </div>
 
-      {/* Experience */}
-      <h2 style={styles.sectionTitle}>EXPERIENCE</h2>
+      <h2>Experience</h2>
       {data.experience.map((exp, i) => (
-        <div key={i} style={styles.entry}>
-          <strong>
-            {exp.company} — {exp.title}
-          </strong>
-          <p style={styles.dates}>{exp.dates}</p>
+        <div key={i} style={{ marginBottom: "20px" }}>
+          <h3>
+            {exp.title} at {exp.company}
+          </h3>
+          <p style={{ fontStyle: "italic" }}>{exp.dates}</p>
           <p>{exp.description}</p>
         </div>
       ))}
 
-      {/* Education */}
-      <h2 style={styles.sectionTitle}>EDUCATION</h2>
+      <h2>Education</h2>
       {data.education.map((edu, i) => (
-        <div key={i} style={styles.entry}>
-          <strong>
-            {edu.school} — {edu.degree}
-          </strong>
-          <p style={styles.dates}>{edu.dates}</p>
+        <div key={i} style={{ marginBottom: "20px" }}>
+          <h3>
+            {edu.degree} — {edu.school}
+          </h3>
+          <p style={{ fontStyle: "italic" }}>{edu.dates}</p>
+          <p>{edu.description}</p>
         </div>
       ))}
 
-      {/* Projects */}
-      <h2 style={styles.sectionTitle}>PROJECTS</h2>
-      {data.projects.map((proj, i) => (
-        <div key={i} style={styles.entry}>
-          <strong>{proj.name}</strong> — {proj.description}
-          <p>
-            <em>Technologies:</em> {proj.technologies}
-          </p>
-        </div>
-      ))}
-
-      {/* Personal Info
-      {data.name && (
+      {data.projects.length > 0 && (
         <>
-          <h2 style={styles.sectionTitle}>PERSONAL INFO</h2>
-          <ul style={{ paddingLeft: "20px" }}>
-            {data.name.split("\n").map((line, i) => (
-              <li key={i}>{line.trim()}</li>
-            ))}
-          </ul>
+          <h2>Projects</h2>
+          {data.projects.map((proj, i) => (
+            <div key={i} style={{ marginBottom: "20px" }}>
+              <h3>{proj.name}</h3>
+              <p>{proj.description}</p>
+              <p>
+                <em>Technologies:</em> {proj.technologies}
+              </p>
+            </div>
+          ))}
         </>
-      )} */}
+      )}
 
-      {/* Certifications */}
-      <h2 style={styles.sectionTitle}>CERTIFICATIONS</h2>
-      {data.certifications.map((cert, i) => (
-        <div key={i} style={styles.entry}>
-          <strong>{cert.name}</strong>
-          <br />
-          <span>{cert.issuer}</span>
-          <br />
-          <span>{cert.date}</span>
-        </div>
-      ))}
+      {data.certifications.length > 0 && (
+        <>
+          <h2>Certifications</h2>
+          {data.certifications.map((cert, i) => (
+            <div key={i} style={{ marginBottom: "20px" }}>
+              <h3>{cert.name}</h3>
+              <p>
+                {cert.issuer} — {cert.date}
+              </p>
+            </div>
+          ))}
+        </>
+      )}
 
-      {/* Skills */}
-      <h2 style={styles.sectionTitle}>SKILLS</h2>
-      <p>{data.skills.join(", ")}</p>
+      {data.languages?.length > 0 && (
+        <>
+          <h2>Languages</h2>
+          {data.languages.map((lang, i) => (
+            <p key={i}>
+              <strong>{lang.language}</strong> — Written: {lang.written},
+              Verbal: {lang.verbal}
+            </p>
+          ))}
+        </>
+      )}
 
-      {/* References */}
-      <h2 style={styles.sectionTitle}>REFERENCES</h2>
-      {data.references.map((ref, i) => (
-        <div key={i} style={styles.entry}>
-          <strong>{ref.name}</strong> — {ref.relationship}
-          <p>Contact: {ref.contact}</p>
-        </div>
-      ))}
+      {data.software?.length > 0 && (
+        <>
+          <h2>Software</h2>
+          {data.software.map((sw, i) => (
+            <p key={i}>
+              <strong>{sw.software}</strong> — {sw.years} years, {sw.ability}
+            </p>
+          ))}
+        </>
+      )}
+
+      {data.salaryExpectation && (
+        <>
+          <h2>Salary Expectation</h2>
+          <p>{data.salaryExpectation}</p>
+        </>
+      )}
+      {data.transportation && (
+        <>
+          <h2>Transportation</h2>
+          <p>{data.transportation}</p>
+        </>
+      )}
+      {data.healthStatus && (
+        <>
+          <h2>Health Status</h2>
+          <p>{data.healthStatus}</p>
+        </>
+      )}
+
+      {data.references.length > 0 && (
+        <>
+          <h2>References</h2>
+          {data.references.map((ref, i) => (
+            <div key={i} style={{ marginBottom: "16px" }}>
+              <strong>{ref.name}</strong> — {ref.relationship}
+              <br />
+              <span>{ref.contact}</span>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
-};
-
-const styles = {
-  sectionTitle: {
-    fontSize: "18px",
-    fontWeight: "bold",
-    marginTop: "30px",
-    marginBottom: "10px",
-    borderBottom: "1px solid #ccc",
-    paddingBottom: "4px",
-  },
-  entry: {
-    marginBottom: "16px",
-  },
-  dates: {
-    fontStyle: "italic",
-    fontSize: "13px",
-    margin: "2px 0",
-  },
 };
 
 export default TemplateTwo;
